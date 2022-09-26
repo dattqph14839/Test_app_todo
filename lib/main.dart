@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_app_todo/controllers/note_controller.dart';
+import 'package:test_app_todo/views/detail.dart';
 import 'package:test_app_todo/views/main_page.dart';
 
 void main() {
@@ -21,6 +22,9 @@ class MyApp extends StatelessWidget {
         primarySwatch: Colors.red,
       ),
       home: const MainPage(),
+      routes: {
+        detail.routeName: (ctx) => const detail(),
+      },
     );
   }
 }

@@ -52,10 +52,21 @@ class _MainPageState extends State<MainPage> {
                 const PopupMenuItem<int>(value: 1, child: Text('Newest')),
               ],
             ),
+            IconButton(
+              icon: Icon(Icons.search,
+                  // color: Get.isDarkMode ? Colors.white : Colors.black
+              ),
+              onPressed: () {
+                //   showSearch(context: context, delegate: MySearchDelegate());
+                // },
+              },
+            ),
           ],
+
         ),
         body: context.watch<NoteController>().listOfNotes.isEmpty
             ? const Center(child: Text('Empty'))
+
             : ListView.builder(
                 itemCount: context.watch<NoteController>().listOfNotes.length,
                 itemBuilder: ((context, index) => Padding(
@@ -79,8 +90,21 @@ class _MainPageState extends State<MainPage> {
                                         shape: BoxShape.circle,
                                         color: Colors.white,
                                         border: Border.all(
-                                            color: Colors.black, width: 1)),
-                                    
+                                            color: Colors.red, width: 1)),
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(5.0),
+                                      child: _value
+                                          ? const Icon(
+                                        Icons.check,
+                                        size: 20.0,
+                                        color: Colors.green,
+                                      )
+                                          : const SizedBox(
+                                        width: 20,
+                                        height: 20,
+                                      ),
+                                    ),
+
                                   ),
                                 )),
                                 const SizedBox(
@@ -99,19 +123,21 @@ class _MainPageState extends State<MainPage> {
                                             .listOfNotes[index]
                                             .title!,
                                         style: const TextStyle(
-                                            fontSize: 20,
+                                            fontSize: 30,
                                             fontWeight: FontWeight.bold),
                                       ),
                                       const SizedBox(
                                         height: 10,
                                       ),
+
+
                                       Text(
                                         context
                                             .watch<NoteController>()
                                             .listOfNotes[index]
                                             .content!,
                                         style: const TextStyle(
-                                            fontSize: 16,
+                                            fontSize: 20,
                                             fontWeight: FontWeight.normal),
                                         overflow: TextOverflow.ellipsis,
                                       ),
@@ -184,6 +210,7 @@ class _MainPageState extends State<MainPage> {
                               ]),
                         ),
                       ),
+
                     )),
               ));
   }
@@ -216,7 +243,9 @@ class _MainPageState extends State<MainPage> {
                               fontSize: 18,
                               fontWeight: FontWeight.normal,
                               color: Colors.blue),
-                        )),
+                        )
+                    ),
+
                   ],
                   content: Padding(
                     padding: const EdgeInsets.all(5),
@@ -345,3 +374,4 @@ class _MainPageState extends State<MainPage> {
             )));
   }
 }
+

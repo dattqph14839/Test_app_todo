@@ -4,9 +4,9 @@ import 'package:test_app_todo/models/note_model.dart';
 class NoteController extends ChangeNotifier {
   List<NoteModel> listOfNotes = [
     NoteModel(
-        title: 'first',
+        title: 'Living Rom',
         content:
-            'contentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontentcontent',
+            'Need done before',
         time: DateTime.now())
   ];
 
