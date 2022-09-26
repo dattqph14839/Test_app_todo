@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:test_app_todo/controllers/note_controller.dart';
 import 'package:test_app_todo/models/note_model.dart';
+import 'package:test_app_todo/views/detail.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({Key? key}) : super(key: key);
@@ -13,6 +14,7 @@ class MainPage extends StatefulWidget {
 class _MainPageState extends State<MainPage> {
   bool _value = false;
   final _formKey = GlobalKey<FormState>();
+  NoteController get _read => context.read<NoteController>();
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _contentController = TextEditingController();
 
@@ -72,7 +74,10 @@ class _MainPageState extends State<MainPage> {
                 itemBuilder: ((context, index) => Padding(
                       padding:
                           const EdgeInsets.only(left: 20.0, top: 10, right: 20),
-                      child: Card(
+                      child:
+
+                      Card(
+
                         child: Padding(
                           padding: const EdgeInsets.all(10),
                           child: Row(
@@ -84,13 +89,15 @@ class _MainPageState extends State<MainPage> {
                                     setState(() {
                                       _value = !_value;
                                     });
+
+
                                   },
-                                  child: Container(
-                                    decoration: BoxDecoration(
-                                        shape: BoxShape.circle,
-                                        color: Colors.white,
-                                        border: Border.all(
-                                            color: Colors.red, width: 1)),
+                                      child: Container(
+                                        decoration: BoxDecoration(
+                                            shape: BoxShape.circle,
+                                            color: Colors.white,
+                                            border: Border.all(
+                                                color: Colors.red, width: 1)),
                                     child: Padding(
                                       padding: const EdgeInsets.all(5.0),
                                       child: _value
@@ -206,9 +213,16 @@ class _MainPageState extends State<MainPage> {
                                       },
                                     ),
                                   ),
-                                ),
+                                ),GestureDetector(
+                                  onTap: (){
+                                    Navigator.of(context).pushNamed(
+                                      detail.routeName,
+                                      arguments: _read.listOfNotes[index].title
+                                    );
+                                },)
                               ]),
                         ),
+
                       ),
 
                     )),
@@ -217,9 +231,13 @@ class _MainPageState extends State<MainPage> {
 
   _buildDeleteDialog(BuildContext context, String title, int index) =>
       showDialog(
+
           context: context,
           builder: (context) => AlertDialog(
+
+
                   actions: [
+                    
                     TextButton(
                         onPressed: () {
                           context.read<NoteController>().deleteNote(index);
@@ -247,6 +265,7 @@ class _MainPageState extends State<MainPage> {
                     ),
 
                   ],
+
                   content: Padding(
                     padding: const EdgeInsets.all(5),
                     child: SizedBox(

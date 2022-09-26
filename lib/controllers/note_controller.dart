@@ -40,4 +40,8 @@ class NoteController extends ChangeNotifier {
     listOfNotes.removeAt(index);
     notifyListeners();
   }
+
+  NoteModel? findByTitle(String title){
+    return listOfNotes.firstWhere((element) => element.title == title);
+  }
 }
